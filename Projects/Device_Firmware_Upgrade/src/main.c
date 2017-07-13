@@ -51,10 +51,10 @@ uint16_t res = 0;
   while(1)
   {
 	  /* Check if the Key push-button on STM3210x-EVAL Board is pressed */
-	  if (DFU_Button_Read() == 0x00)//pushed	  
-		IAP_RunApp();
+	  if (DFU_Button_Read() == 0x01)//pushed
+	      IAP_IntoDFU();		  
 	  else
-		IAP_IntoDFU();
+		  IAP_RunApp();
   }
 
 }

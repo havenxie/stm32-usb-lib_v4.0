@@ -267,10 +267,12 @@ void STM_EVAL_PBInit(Button_TypeDef Button, ButtonMode_TypeDef Button_Mode)
   RCC_APB2PeriphClockCmd(BUTTON_CLK[Button] | RCC_APB2Periph_AFIO, ENABLE);
 
   /* Configure Button pin as input floating */
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  if(Button == BUTTON_WAKEUP)
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
+  else
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
   GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
   GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStructure);
-
 
   if (Button_Mode == BUTTON_MODE_EXTI)
   {

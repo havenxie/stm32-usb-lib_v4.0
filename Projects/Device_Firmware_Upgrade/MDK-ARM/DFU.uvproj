@@ -50,7 +50,7 @@
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>0</BrowseInformation>
+          <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\STM3210B-EVAL\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -141,7 +141,7 @@
             <RestoreTracepoints>0</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>1</TargetSelection>
+          <TargetSelection>6</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -155,7 +155,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>Segger\JL2CM3.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -165,11 +165,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4096</DriverSelection>
+            <DriverSelection>4099</DriverSelection>
           </Flash1>
           <bUseTDR>0</bUseTDR>
-          <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash2>Segger\JL2CM3.dll</Flash2>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -357,7 +357,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_MD, USE_STM3210B_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;..\..\..\Libraries\CMSIS\Device\ST\STM32F10x\Include;..\..\..\Libraries\STM32_USB-FS-Device_Driver\inc;..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\..\..\Utilities\STM32_EVAL;..\..\..\Utilities\STM32_EVAL\Common;..\..\..\Utilities\STM32_EVAL\STM3210B_EVAL;..\DFU\inc</IncludePath>
+              <IncludePath>..\inc;..\..\..\Libraries\CMSIS\Device\ST\STM32F10x\Include;..\..\..\Libraries\STM32_USB-FS-Device_Driver\inc;..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\..\..\Utilities\STM32_EVAL;..\..\..\Utilities\STM32_EVAL\STM3210B_EVAL;..\DFU\inc;..\..\..\Utilities\STM32_EVAL\Common</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
