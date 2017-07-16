@@ -2083,9 +2083,9 @@
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
-            <RunUserProg2>0</RunUserProg2>
+            <RunUserProg2>1</RunUserProg2>
             <UserProg1Name>.\..\..\..\Utilities\Binary\hex2bin.exe  .\STM3210E-EVAL\STM3210E-EVAL.hex</UserProg1Name>
-            <UserProg2Name>.\..\..\..\Utilities\Binary\hex2dfu.exe -t  .\STM3210E-EVAL\*.hex</UserProg2Name>
+            <UserProg2Name>.\..\..\..\Utilities\Binary\hex2dfu.exe -t  .\STM3210E-EVAL\STM3210E-EVAL.hex</UserProg2Name>
             <UserProg1Dos16Mode>1</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>1</UserProg2Dos16Mode>
           </AfterMake>
