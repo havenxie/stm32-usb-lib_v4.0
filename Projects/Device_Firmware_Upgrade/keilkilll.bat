@@ -24,6 +24,4 @@ del *.iex /s
 del *.htm /s
 del *.sct /s
 del *.map /s
-del *.htm /s
-::rd STM3210E-EVAL /q/s
 exit
