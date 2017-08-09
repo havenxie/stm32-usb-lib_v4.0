@@ -1,3 +1,4 @@
+APP部分可借用stm32-iap-app_lite（https://github.com/havenxie/stm32-iap-app_lite）要注意应该选择相同的芯片型号
 /**
   ******************************************************************************
   * @file    readme.txt
