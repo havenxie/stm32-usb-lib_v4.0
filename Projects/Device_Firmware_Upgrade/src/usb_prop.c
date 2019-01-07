@@ -254,22 +254,12 @@ void DFU_Status_Out (void)
           Pointer += MAL_Buffer[4] << 24;
           MAL_Erase(Pointer);
         }
-		else if ((MAL_Buffer[0] == CMD_TEST ) && (wlength == 5)) 
-		{
-	      Pointer  = MAL_Buffer[1];
-          Pointer += MAL_Buffer[2] << 8;
-          Pointer += MAL_Buffer[3] << 16;
-          Pointer += MAL_Buffer[4] << 24;
-		  STM_EVAL_LEDToggle(LED1);
-		  //NVIC_SystemReset();
-		}
       }
 
       else if (wBlockNum > 1)  // Download Command
       {
         Addr = ((wBlockNum - 2) * wTransferSize) + Pointer;
         MAL_Write(Addr, wlength);
-		  
       }
       wlength = 0;
       wBlockNum = 0;
@@ -284,7 +274,6 @@ void DFU_Status_Out (void)
     else if (DeviceState == STATE_dfuMANIFEST)/* Manifestation in progress*/
     {
       DFU_write_crc();
-	  
       return;
     }
   }
@@ -342,7 +331,7 @@ RESULT DFU_Data_Setup(uint8_t RequestNo)
   pInformation->Ctrl_Info.CopyData = CopyRoutine;
   pInformation->Ctrl_Info.Usb_wOffset = 0;
   (*CopyRoutine)(0);
-	
+
   return USB_SUCCESS;
 }
 
@@ -355,7 +344,7 @@ RESULT DFU_Data_Setup(uint8_t RequestNo)
 *******************************************************************************/
 RESULT DFU_NoData_Setup(uint8_t RequestNo)
 {
-		
+
   if (Type_Recipient == (CLASS_REQUEST | INTERFACE_RECIPIENT))
   {
     /*DFU_NDLOAD*/
@@ -387,6 +376,7 @@ RESULT DFU_NoData_Setup(uint8_t RequestNo)
     /*DFU_CLRSTATUS*/
     else if (RequestNo == DFU_CLRSTATUS)
     {
+
       if (DeviceState == STATE_dfuERROR)
       {
         DeviceState = STATE_dfuIDLE;

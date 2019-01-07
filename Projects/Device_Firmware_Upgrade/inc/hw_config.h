@@ -31,11 +31,11 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "platform_config.h"
-#include "iap_config.h"
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Flash memory address from where user application will be loaded */
-//#define ApplicationAddress 0x08003000
+#define ApplicationAddress 0x08003000
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
@@ -50,10 +50,10 @@ void DFU_Button_Config(void);
 uint8_t  DFU_Button_Read(void);
 
 void Reset_Device(void);
-//void SMI_FLASH_Init(void);
-//void SMI_FLASH_SectorErase(uint32_t Address);
-//void SMI_FLASH_WordWrite(uint32_t Address, uint32_t Data);
-//void SMI_FLASH_PageWrite(uint32_t Address, uint32_t* wBuffer);
+void SMI_FLASH_Init(void);
+void SMI_FLASH_SectorErase(uint32_t Address);
+void SMI_FLASH_WordWrite(uint32_t Address, uint32_t Data);
+void SMI_FLASH_PageWrite(uint32_t Address, uint32_t* wBuffer);
 void Get_SerialNum(void);
 
 /* External variables --------------------------------------------------------*/

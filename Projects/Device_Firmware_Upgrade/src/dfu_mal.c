@@ -92,12 +92,11 @@ uint16_t MAL_Init(void)
 
   FLASH_If_Init(); /* Internal Flash */
 
-#if (defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)) && defined(USE_SPI_FLASH)
+#if defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)
   SPI_If_Init();   /* SPI Flash */
 #endif /* USE_STM3210B_EVAL or USE_STM3210E_EVAL */
 
-#if (defined(USE_STM3210E_EVAL ) && defined(USE_NOR_FLASH))
- 
+#ifdef USE_STM3210E_EVAL 
   NOR_If_Init();  /* NOR Flash */
   FSMC_NOR_ReadID(&NOR_ID);
     
@@ -114,7 +113,6 @@ uint16_t MAL_Init(void)
   {
     DFU_String_Descriptor[6].Descriptor = DFU_StringInterface2_2;
   }
- 
 #endif /* USE_STM3210E_EVAL */
 
   return MAL_OK;
@@ -136,13 +134,13 @@ uint16_t MAL_Erase(uint32_t SectorAddress)
       pMAL_Erase = FLASH_If_Erase;
       break;
       
-#if (defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)) && defined(USE_SPI_FLASH)
+#if defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)
     case SPI_FLASH_BASE:
       pMAL_Erase = SPI_If_Erase;
       break;
 #endif /* USE_STM3210B_EVAL or USE_STM3210E_EVAL */
             
-#if defined(USE_STM3210E_EVAL) && defined(USE_NOR_FLASH)
+#ifdef USE_STM3210E_EVAL  
     case NOR_FLASH_BASE:
       pMAL_Erase = NOR_If_Erase;
       break;
@@ -170,13 +168,13 @@ uint16_t MAL_Write (uint32_t SectorAddress, uint32_t DataLength)
       pMAL_Write = FLASH_If_Write;
       break;
 
-#if (defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)) && defined(USE_SPI_FLASH)
+#if defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)    
     case SPI_FLASH_BASE:
       pMAL_Write = SPI_If_Write;
       break;
 #endif /* USE_STM3210B_EVAL || USE_STM3210E_EVAL */      
 
-#if defined(USE_STM3210E_EVAL) && defined(USE_NOR_FLASH)
+#ifdef USE_STM3210E_EVAL
     case NOR_FLASH_BASE:
       pMAL_Write = NOR_If_Write;
       break;
@@ -203,13 +201,13 @@ uint8_t *MAL_Read (uint32_t SectorAddress, uint32_t DataLength)
       pMAL_Read = FLASH_If_Read;
       break;
       
-#if (defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)) && defined(USE_SPI_FLASH)
+#if defined(USE_STM3210B_EVAL) || defined(USE_STM3210E_EVAL)     
     case SPI_FLASH_BASE:
       pMAL_Read = SPI_If_Read;
       break;
 #endif /* USE_STM3210B_EVAL or USE_STM3210E_EVAL */
 
-#if defined(USE_STM3210E_EVAL) && defined(USE_NOR_FLASH)
+#ifdef USE_STM3210E_EVAL
     case NOR_FLASH_BASE:
       pMAL_Read = NOR_If_Read;
       break;
@@ -236,7 +234,7 @@ uint16_t MAL_GetStatus(uint32_t SectorAddress , uint8_t Cmd, uint8_t *buffer)
 
   uint8_t y = Cmd & 0x01;
 
-#if defined(USE_STM3210E_EVAL) && defined(USE_NOR_FLASH)
+#if defined(USE_STM3210E_EVAL)  
   if ((x == 1) && (NOR_ID.Device_Code2 == NOR_M29W128G)&& (NOR_ID.Manufacturer_Code == 0x20))
   {
     x = 3 ;

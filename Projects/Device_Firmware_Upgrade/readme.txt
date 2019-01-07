@@ -1,4 +1,3 @@
-APP部分可借用stm32-iap-app_lite（https://github.com/havenxie/stm32-iap-app_lite）要注意应该选择相同的芯片型号
 /**
   ******************************************************************************
   * @file    readme.txt
@@ -43,9 +42,14 @@ microcontrollers website: www.st.com/stm32
 
 Directory contents
 ==================
+ + \binary_template: contains a set of sources files that build the application 
+                     to be loaded with DFU 
  + \inc: contains the Demo firmware header files
  + \EWARM: contains preconfigured project for EWARM toolchain
- + \MDK-ARM: contains preconfigured project for MDK-ARM toolchain           
+ + \RIDE: contains preconfigured project for RIDE toolchain
+ + \MDK-ARM: contains preconfigured project for MDK-ARM toolchain
+ + \TASKING: contains preconfigured project for TASKING toolchain  
+ + \TrueSTUDIO: contains preconfigured projects for TrueSTUDIO toolchain          
  + \src: contains the Demo firmware source files
 
 
@@ -116,6 +120,54 @@ How to use it
     - Load project image: Debug->Start/Stop Debug Session
     - Run program: Debug->Run (F5)  
 
- 
+ + RIDE
+    - Open the DFU.rprj project.
+    - In the configuration toolbar(Project->properties) select the project config:
+        - STM3210B-EVAL: to configure the project for STM32 Medium-density devices
+        - STM3210E-EVAL: to configure the project for STM32 High-density devices
+        - STM3210E-EVAL_XL: to configure the project for STM32 XL-density devices
+        - STM32L152-EVAL: to configure the project for STM32 Medium-Density Low-Power devices
+        - STM32L152D-EVAL: to configure the project for STM32 High-Density Low-Power devices
+        - STM32373C-EVAL:  to configure the project for STM32F37xxx devices
+        - STM32303C-EVAL:  to configure the project for STM32F30xxx devices  
+    - Rebuild all files: Project->build project
+    - Load project image: Debug->start(ctrl+D)
+    - Run program: Debug->Run(ctrl+F9)
+
+ + TASKING
+    - Open TASKING toolchain.
+      - Click on File->Import, select General->'Existing Projects into Workspace' 
+        and then click "Next". 
+      - Browse to TASKING workspace directory and select the project: 
+       - STM3210B-EVAL: to configure the project for STM32 Medium-density devices
+        - STM3210E-EVAL: to configure the project for STM32 High-density devices
+        - STM3210E-EVAL_XL: to configure the project for STM32 XL-density devices
+        - STM32L152-EVAL: to configure the project for STM32 Medium-Density Low-Power devices
+        - STM32L152D-EVAL: to configure the project for STM32 High-Density Low-Power devices
+        - STM32373C-EVAL:  to configure the project for STM32F37xxx devices
+        - STM32303C-EVAL:  to configure the project for STM32F30xxx devices  
+    - Rebuild all project files: Select the project in the "Project explorer" 
+        window then click on Project->build project menu.
+    - Run program: Select the project in the "Project explorer" window then click 
+        Run->Debug (F11)
+
+ + TrueSTUDIO
+    - Open the TrueSTUDIO toolchain.
+    - Click on File->Switch Workspace->Other and browse to TrueSTUDIO workspace 
+      directory.
+    - Click on File->Import, select General->'Existing Projects into Workspace' 
+      and then click "Next". 
+    - Browse to the TrueSTUDIO workspace directory and select the project:  
+        - STM3210B-EVAL: to load the project for STM32 Medium-density devices
+        - STM3210E-EVAL: to load the project for STM32 High-density devices
+        - STM3210E_EVAL_XL: to load the project for STM32 XL-density devices
+        - STM32L152_EVAL: to load the project for STM32 Medium-Density Low-Power devices
+        - STM32L152D-EVAL: to configure the project for STM32 High-Density Low-Power devices
+        - STM32373C-EVAL:  to configure the project for STM32F37xxx devices
+        - STM32303C-EVAL:  to configure the project for STM32F30xxx devices  
+    - Rebuild all project files: Select the project in the "Project explorer" 
+      window then click on Project->build project menu.
+    - Run program: Select the project in the "Project explorer" window then click 
+      Run->Debug (F11)
 
 ************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE******

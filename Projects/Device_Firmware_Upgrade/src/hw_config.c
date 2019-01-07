@@ -258,9 +258,7 @@ void DFU_Button_Config(void)
   STM_EVAL_PBInit(Button_UP, Mode_GPIO);  
 #else  
   /* Configure "DFU enter" button */
-  //STM_EVAL_PBInit(Button_KEY, Mode_GPIO);
-	STM_EVAL_PBInit(BUTTON_WAKEUP, Mode_GPIO);
-	
+  STM_EVAL_PBInit(Button_KEY, Mode_GPIO);
 #endif /* USE_STM32L152_EVAL */
 }
 
@@ -278,7 +276,7 @@ uint8_t DFU_Button_Read (void)
 #elif defined (USE_STM32L152D_EVAL) 
   return !STM_EVAL_PBGetState(Button_KEY); 
 #else    
-  return STM_EVAL_PBGetState(BUTTON_WAKEUP);  
+  return STM_EVAL_PBGetState(Button_KEY);  
 #endif /* USE_STM32L152_EVAL */  
 }
 

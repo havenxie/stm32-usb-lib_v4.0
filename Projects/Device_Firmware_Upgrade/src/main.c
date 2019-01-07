@@ -29,7 +29,26 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "hw_config.h" 
-#include "iap.h"
+#include "usb_lib.h"
+#include "usb_conf.h"
+#include "usb_prop.h"
+#include "usb_pwr.h"
+#include "dfu_mal.h"
+
+/* Private typedef -----------------------------------------------------------*/
+typedef  void (*pFunction)(void);
+
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+/* Extern variables ----------------------------------------------------------*/
+uint8_t DeviceState;
+uint8_t DeviceStatus[6];
+pFunction Jump_To_Application;
+uint32_t JumpAddress;
+
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
 
 /*******************************************************************************
 * Function Name  : main.
@@ -40,23 +59,39 @@
 *******************************************************************************/
 int main(void)
 {
-uint16_t res = 0;
+
 #if defined (USE_STM32L152D_EVAL)
   FLASH_Unlock();
   FLASH_ClearFlag(FLASH_FLAG_OPTVERRUSR);
 #endif
-  STM_EVAL_LEDInit(LED1);
-  STM_EVAL_LEDOff(LED1);
   DFU_Button_Config();
-  while(1)
-  {
-	  /* Check if the Key push-button on STM3210x-EVAL Board is pressed */
-	  if (DFU_Button_Read() == 0x01)//pushed
-	      IAP_IntoDFU();		  
-	  else
-		  IAP_RunApp();
-  }
 
+  /* Check if the Key push-button on STM3210x-EVAL Board is pressed */
+  if (DFU_Button_Read() != 0x00)
+  { /* Test if user code is programmed starting from address 0x8003000 */
+    if (((*(__IO uint32_t*)ApplicationAddress) & 0x2FFE0000 ) == 0x20000000)
+    { /* Jump to user application */
+
+      JumpAddress = *(__IO uint32_t*) (ApplicationAddress + 4);
+      Jump_To_Application = (pFunction) JumpAddress;
+      /* Initialize user application's Stack Pointer */
+      __set_MSP(*(__IO uint32_t*) ApplicationAddress);
+      Jump_To_Application();
+    }
+  } /* Otherwise enters DFU mode to allow user to program his application */
+
+  /* Enter DFU mode */
+  DeviceState = STATE_dfuERROR;
+  DeviceStatus[0] = STATUS_ERRFIRMWARE;
+  DeviceStatus[4] = DeviceState;
+
+  Set_System();
+  Set_USBClock();
+  USB_Init();  
+  
+  /* Main loop */
+  while (1)
+  {}
 }
 
 

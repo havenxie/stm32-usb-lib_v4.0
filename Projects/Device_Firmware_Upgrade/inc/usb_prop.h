@@ -135,7 +135,6 @@ typedef enum _DFU_REQUESTS {
 #define CMD_GETCOMMANDS              0x00
 #define CMD_SETADDRESSPOINTER        0x21
 #define CMD_ERASE                    0x41
-#define CMD_TEST					 0x81
 
 #endif /* __USB_PROP_H */
 
